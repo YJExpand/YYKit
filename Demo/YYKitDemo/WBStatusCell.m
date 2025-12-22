@@ -17,7 +17,7 @@
     }
     self = [super initWithFrame:frame];
     _titleLabel = [YYLabel new];
-    _titleLabel.size = CGSizeMake(kScreenWidth - 100, self.yy_height);
+    _titleLabel.size = CGSizeMake(kScreenWidth - 100, self.height);
     _titleLabel.left = kWBCellPadding;
     _titleLabel.displaysAsynchronously = YES;
     _titleLabel.ignoreCommonProperties = YES;
@@ -26,8 +26,8 @@
     [self addSubview:_titleLabel];
     
     CALayer *line = [CALayer layer];
-    line.size = CGSizeMake(self.yy_width, CGFloatFromPixel(1));
-    line.bottom = self.yy_height;
+    line.size = CGSizeMake(self.width, CGFloatFromPixel(1));
+    line.bottom = self.height;
     line.backgroundColor = kWBCellLineColor.CGColor;
     [self.layer addSublayer:line];
     self.exclusiveTouch = YES;
@@ -58,7 +58,7 @@
     avatarBorder.frame = _avatarView.bounds;
     avatarBorder.borderWidth = CGFloatFromPixel(1);
     avatarBorder.borderColor = [UIColor colorWithWhite:0.000 alpha:0.090].CGColor;
-    avatarBorder.cornerRadius = _avatarView.yy_height / 2;
+    avatarBorder.cornerRadius = _avatarView.height / 2;
     avatarBorder.shouldRasterize = YES;
     avatarBorder.rasterizationScale = kScreenScale;
     [_avatarView.layer addSublayer:avatarBorder];
@@ -189,7 +189,7 @@
 - (void)setWithLayout:(WBStatusLayout *)layout isRetweet:(BOOL)isRetweet {
     WBPageInfo *pageInfo = isRetweet ? layout.status.retweetedStatus.pageInfo : layout.status.pageInfo;
     if (!pageInfo) return;
-    self.yy_height = isRetweet ? layout.retweetCardHeight : layout.cardHeight;
+    self.height = isRetweet ? layout.retweetCardHeight : layout.cardHeight;
     
     /*
      badge: 25,25 左上角 (42)
@@ -207,7 +207,7 @@
             
         } break;
         case WBStatusCardTypeNormal: {
-            self.yy_width = kWBCellContentWidth;
+            self.width = kWBCellContentWidth;
             if (pageInfo.typeIcon) {
                 _badgeImageView.hidden = NO;
                 _badgeImageView.frame = CGRectMake(0, 0, 25, 25);
@@ -234,7 +234,7 @@
                 _button.hidden = NO;
                 _button.size = CGSizeMake(60, 70);
                 _button.top = 0;
-                _button.right = self.yy_width;
+                _button.right = self.width;
                 [_button setTitle:button.name forState:UIControlStateNormal];
                 [_button setImageWithURL:button.pic forState:UIControlStateNormal placeholder:nil];
             } else {
@@ -242,7 +242,7 @@
             }
         }break;
         case WBStatusCardTypeVideo: {
-            self.yy_width = self.yy_height;
+            self.width = self.height;
             _badgeImageView.hidden = YES;
             _label.hidden = YES;
             _imageView.frame = self.bounds;
@@ -291,34 +291,34 @@
     
     _repostButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _repostButton.exclusiveTouch = YES;
-    _repostButton.size = CGSizeMake(CGFloatPixelRound(self.yy_width / 3.0), self.yy_height);
+    _repostButton.size = CGSizeMake(CGFloatPixelRound(self.width / 3.0), self.height);
     [_repostButton setBackgroundImage:[UIImage imageWithColor:kWBCellHighlightColor] forState:UIControlStateHighlighted];
     
     _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _commentButton.exclusiveTouch = YES;
-    _commentButton.size = CGSizeMake(CGFloatPixelRound(self.yy_width / 3.0), self.yy_height);
-    _commentButton.left = CGFloatPixelRound(self.yy_width / 3.0);
+    _commentButton.size = CGSizeMake(CGFloatPixelRound(self.width / 3.0), self.height);
+    _commentButton.left = CGFloatPixelRound(self.width / 3.0);
     [_commentButton setBackgroundImage:[UIImage imageWithColor:kWBCellHighlightColor] forState:UIControlStateHighlighted];
     
     _likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _likeButton.exclusiveTouch = YES;
-    _likeButton.size = CGSizeMake(CGFloatPixelRound(self.yy_width / 3.0), self.yy_height);
-    _likeButton.left = CGFloatPixelRound(self.yy_width / 3.0 * 2.0);
+    _likeButton.size = CGSizeMake(CGFloatPixelRound(self.width / 3.0), self.height);
+    _likeButton.left = CGFloatPixelRound(self.width / 3.0 * 2.0);
     [_likeButton setBackgroundImage:[UIImage imageWithColor:kWBCellHighlightColor] forState:UIControlStateHighlighted];
     
     _repostImageView = [[UIImageView alloc] initWithImage:[WBStatusHelper imageNamed:@"timeline_icon_retweet"]];
-    _repostImageView.centerY = self.yy_height / 2;
+    _repostImageView.centerY = self.height / 2;
     [_repostButton addSubview:_repostImageView];
     _commentImageView = [[UIImageView alloc] initWithImage:[WBStatusHelper imageNamed:@"timeline_icon_comment"]];
-    _commentImageView.centerY = self.yy_height / 2;
+    _commentImageView.centerY = self.height / 2;
     [_commentButton addSubview:_commentImageView];
     _likeImageView = [[UIImageView alloc] initWithImage:[WBStatusHelper imageNamed:@"timeline_icon_unlike"]];
-    _likeImageView.centerY = self.yy_height / 2;
+    _likeImageView.centerY = self.height / 2;
     [_likeButton addSubview:_likeImageView];
     
     _repostLabel = [YYLabel new];
     _repostLabel.userInteractionEnabled = NO;
-    _repostLabel.yy_height = self.yy_height;
+    _repostLabel.height = self.height;
     _repostLabel.textVerticalAlignment = YYTextVerticalAlignmentCenter;
     _repostLabel.displaysAsynchronously = YES;
     _repostLabel.ignoreCommonProperties = YES;
@@ -328,7 +328,7 @@
     
     _commentLabel = [YYLabel new];
     _commentLabel.userInteractionEnabled = NO;
-    _commentLabel.yy_height = self.yy_height;
+    _commentLabel.height = self.height;
     _commentLabel.textVerticalAlignment = YYTextVerticalAlignmentCenter;
     _commentLabel.displaysAsynchronously = YES;
     _commentLabel.ignoreCommonProperties = YES;
@@ -338,7 +338,7 @@
     
     _likeLabel = [YYLabel new];
     _likeLabel.userInteractionEnabled = NO;
-    _likeLabel.yy_height = self.yy_height;
+    _likeLabel.height = self.height;
     _likeLabel.textVerticalAlignment = YYTextVerticalAlignmentCenter;
     _likeLabel.displaysAsynchronously = YES;
     _likeLabel.ignoreCommonProperties = YES;
@@ -356,7 +356,7 @@
     _line1.locations = locations;
     _line1.startPoint = CGPointMake(0, 0);
     _line1.endPoint = CGPointMake(0, 1);
-    _line1.size = CGSizeMake(CGFloatFromPixel(1), self.yy_height);
+    _line1.size = CGSizeMake(CGFloatFromPixel(1), self.height);
     _line1.left = _repostButton.right;
     
     _line2 = [CAGradientLayer layer];
@@ -364,16 +364,16 @@
     _line2.locations = locations;
     _line2.startPoint = CGPointMake(0, 0);
     _line2.endPoint = CGPointMake(0, 1);
-    _line2.size = CGSizeMake(CGFloatFromPixel(1), self.yy_height);
+    _line2.size = CGSizeMake(CGFloatFromPixel(1), self.height);
     _line2.left = _commentButton.right;
     
     _topLine = [CALayer layer];
-    _topLine.size = CGSizeMake(self.yy_width, CGFloatFromPixel(1));
+    _topLine.size = CGSizeMake(self.width, CGFloatFromPixel(1));
     _topLine.backgroundColor = kWBCellLineColor.CGColor;
     
     _bottomLine = [CALayer layer];
     _bottomLine.size = _topLine.size;
-    _bottomLine.bottom = self.yy_height;
+    _bottomLine.bottom = self.height;
     _bottomLine.backgroundColor = UIColorHex(e8e8e8).CGColor;
     
     [self addSubview:_repostButton];
@@ -409,9 +409,9 @@
 }
 
 - (void)setWithLayout:(WBStatusLayout *)layout {
-    _repostLabel.yy_width = layout.toolbarRepostTextWidth;
-    _commentLabel.yy_width = layout.toolbarCommentTextWidth;
-    _likeLabel.yy_width = layout.toolbarLikeTextWidth;
+    _repostLabel.width = layout.toolbarRepostTextWidth;
+    _commentLabel.width = layout.toolbarCommentTextWidth;
+    _likeLabel.width = layout.toolbarLikeTextWidth;
     
     _repostLabel.textLayout = layout.toolbarRepostTextLayout;
     _commentLabel.textLayout = layout.toolbarCommentTextLayout;
@@ -444,11 +444,11 @@
 
 - (void)adjustImage:(UIImageView *)image label:(YYLabel *)label inButton:(UIButton *)button {
     CGFloat imageWidth = image.bounds.size.width;
-    CGFloat labelWidth = label.yy_width;
+    CGFloat labelWidth = label.width;
     CGFloat paddingMid = 5;
-    CGFloat paddingSide = (button.yy_width - imageWidth - labelWidth - paddingMid) / 2.0;
+    CGFloat paddingSide = (button.width - imageWidth - labelWidth - paddingMid) / 2.0;
     image.centerX = CGFloatPixelRound(paddingSide + imageWidth / 2);
-    label.right = CGFloatPixelRound(button.yy_width - paddingSide);
+    label.right = CGFloatPixelRound(button.width - paddingSide);
 }
 
 - (void)setLiked:(BOOL)liked withAnimation:(BOOL)animation {
@@ -476,7 +476,7 @@
     
     if (!animation) {
         _likeImageView.image = image;
-        _likeLabel.yy_width = CGFloatPixelRound(textLayout.textBoundingRect.size.width);
+        _likeLabel.width = CGFloatPixelRound(textLayout.textBoundingRect.size.width);
         _likeLabel.textLayout = layout.toolbarLikeTextLayout;
         [self adjustImage:_likeImageView label:_likeLabel inButton:_likeButton];
         return;
@@ -487,7 +487,7 @@
     } completion:^(BOOL finished) {
         
         _likeImageView.image = image;
-        _likeLabel.yy_width = CGFloatPixelRound(textLayout.textBoundingRect.size.width);
+        _likeLabel.width = CGFloatPixelRound(textLayout.textBoundingRect.size.width);
         _likeLabel.textLayout = layout.toolbarLikeTextLayout;
         [self adjustImage:_likeImageView label:_likeLabel inButton:_likeButton];
         
@@ -539,32 +539,32 @@
     _imageView.hidden = YES;
     [self addSubview:_imageView];
     
-    _label.yy_height = kWBCellTagPlaceHeight;
-    _button.yy_height = kWBCellTagPlaceHeight;
-    self.yy_height = kWBCellTagPlaceHeight;
+    _label.height = kWBCellTagPlaceHeight;
+    _button.height = kWBCellTagPlaceHeight;
+    self.height = kWBCellTagPlaceHeight;
     return self;
 }
 
 - (void)setWithLayout:(WBStatusLayout *)layout {
     if (layout.tagType == WBStatusTagTypePlace) {
-        _label.yy_height = kWBCellTagPlaceHeight;
+        _label.height = kWBCellTagPlaceHeight;
         _imageView.hidden = NO;
         _button.hidden = NO;
         
         _label.left = _imageView.right + 6;
-        _label.yy_width = layout.tagTextLayout.textBoundingRect.size.width + 6;
+        _label.width = layout.tagTextLayout.textBoundingRect.size.width + 6;
         _label.textLayout = layout.tagTextLayout;
         _label.userInteractionEnabled = NO;
         
-        self.yy_width = _label.right;
-        _label.yy_width = self.yy_width;
-        _button.yy_width = self.yy_width;
+        self.width = _label.right;
+        _label.width = self.width;
+        _button.width = self.width;
     } else if (layout.tagType == WBStatusTagTypeNormal) {
         _imageView.hidden = YES;
         _button.hidden = YES;
         
         _label.left = 0;
-        _label.yy_width = layout.tagTextLayout.textBoundingRect.size.width + 1;
+        _label.width = layout.tagTextLayout.textBoundingRect.size.width + 1;
         _label.userInteractionEnabled = YES;
         _label.textLayout = layout.tagTextLayout;
     }
@@ -588,8 +588,8 @@
     @weakify(self);
     
     _contentView = [UIView new];
-    _contentView.yy_width = kScreenWidth;
-    _contentView.yy_height = 1;
+    _contentView.width = kScreenWidth;
+    _contentView.height = 1;
     _contentView.backgroundColor = [UIColor whiteColor];
     static UIImage *topLineBG, *bottomLineBG;
     static dispatch_once_t onceToken;
@@ -608,15 +608,15 @@
         }];
     });
     UIImageView *topLine = [[UIImageView alloc] initWithImage:topLineBG];
-    topLine.yy_width = _contentView.yy_width;
+    topLine.width = _contentView.width;
     topLine.bottom = 0;
     topLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
     [_contentView addSubview:topLine];
     
     
     UIImageView *bottomLine = [[UIImageView alloc] initWithImage:bottomLineBG];
-    bottomLine.yy_width = _contentView.yy_width;
-    bottomLine.top = _contentView.yy_height;
+    bottomLine.width = _contentView.width;
+    bottomLine.top = _contentView.height;
     bottomLine.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     [_contentView addSubview:bottomLine];
     [self addSubview:_contentView];
@@ -639,7 +639,7 @@
     _menuButton.size = CGSizeMake(30, 30);
     [_menuButton setImage:[WBStatusHelper imageNamed:@"timeline_icon_more"] forState:UIControlStateNormal];
     [_menuButton setImage:[WBStatusHelper imageNamed:@"timeline_icon_more_highlighted"] forState:UIControlStateHighlighted];
-    _menuButton.centerX = self.yy_width - 20;
+    _menuButton.centerX = self.width - 20;
     _menuButton.centerY = 18;
     [_menuButton addBlockForControlEvents:UIControlEventTouchUpInside block:^(id sender) {
         if ([weak_self.cell.delegate respondsToSelector:@selector(cellDidClickMenu:)]) {
@@ -650,12 +650,12 @@
     
     _retweetBackgroundView = [UIView new];
     _retweetBackgroundView.backgroundColor = kWBCellInnerViewColor;
-    _retweetBackgroundView.yy_width = kScreenWidth;
+    _retweetBackgroundView.width = kScreenWidth;
     [_contentView addSubview:_retweetBackgroundView];
     
     _textLabel = [YYLabel new];
     _textLabel.left = kWBCellPadding;
-    _textLabel.yy_width = kWBCellContentWidth;
+    _textLabel.width = kWBCellContentWidth;
     _textLabel.textVerticalAlignment = YYTextVerticalAlignmentTop;
     _textLabel.displaysAsynchronously = YES;
     _textLabel.ignoreCommonProperties = YES;
@@ -670,7 +670,7 @@
     
     _retweetTextLabel = [YYLabel new];
     _retweetTextLabel.left = kWBCellPadding;
-    _retweetTextLabel.yy_width = kWBCellContentWidth;
+    _retweetTextLabel.width = kWBCellContentWidth;
     _retweetTextLabel.textVerticalAlignment = YYTextVerticalAlignmentTop;
     _retweetTextLabel.displaysAsynchronously = YES;
     _retweetTextLabel.ignoreCommonProperties = YES;
@@ -707,8 +707,8 @@
         badge.contentMode = UIViewContentModeScaleAspectFit;
         badge.size = CGSizeMake(56 / 2, 36 / 2);
         badge.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
-        badge.right = imageView.yy_width;
-        badge.bottom = imageView.yy_height;
+        badge.right = imageView.width;
+        badge.bottom = imageView.height;
         badge.hidden = YES;
         [imageView addSubview:badge];
         
@@ -736,14 +736,14 @@
 - (void)setLayout:(WBStatusLayout *)layout {
     _layout = layout;
     
-    self.yy_height = layout.height;
+    self.height = layout.height;
     _contentView.top = layout.marginTop;
-    _contentView.yy_height = layout.height - layout.marginTop - layout.marginBottom;
+    _contentView.height = layout.height - layout.marginTop - layout.marginBottom;
     
     CGFloat top = 0;
     if (layout.titleHeight > 0) {
         _titleView.hidden = NO;
-        _titleView.yy_height = layout.titleHeight;
+        _titleView.height = layout.titleHeight;
         _titleView.titleLabel.textLayout = layout.titleTextLayout;
         top = layout.titleHeight;
     } else {
@@ -762,7 +762,7 @@
     _profileView.nameLabel.textLayout = layout.nameTextLayout;
     _profileView.sourceLabel.textLayout = layout.sourceTextLayout;
     _profileView.verifyType = layout.status.user.userVerifyType;
-    _profileView.yy_height = layout.profileHeight;
+    _profileView.height = layout.profileHeight;
     _profileView.top = top;
     top += layout.profileHeight;
 
@@ -776,7 +776,7 @@
     }];
     
     _textLabel.top = top;
-    _textLabel.yy_height = layout.textHeight;
+    _textLabel.height = layout.textHeight;
     _textLabel.textLayout = layout.textLayout;
     top += layout.textHeight;
     
@@ -793,11 +793,11 @@
     //优先级是 转发->图片->卡片
     if (layout.retweetHeight > 0) {
         _retweetBackgroundView.top = top;
-        _retweetBackgroundView.yy_height = layout.retweetHeight;
+        _retweetBackgroundView.height = layout.retweetHeight;
         _retweetBackgroundView.hidden = NO;
         
         _retweetTextLabel.top = top;
-        _retweetTextLabel.yy_height = layout.retweetTextHeight;
+        _retweetTextLabel.height = layout.retweetTextHeight;
         _retweetTextLabel.textLayout = layout.retweetTextLayout;
         _retweetTextLabel.hidden = NO;
         
@@ -822,13 +822,13 @@
     if (layout.tagHeight > 0) {
         _tagView.hidden = NO;
         [_tagView setWithLayout:layout];
-        _tagView.centerY = _contentView.yy_height - kWBCellToolbarHeight - layout.tagHeight / 2;
+        _tagView.centerY = _contentView.height - kWBCellToolbarHeight - layout.tagHeight / 2;
     } else {
         _tagView.hidden = YES;
     }
     
     
-    _toolbarView.bottom = _contentView.yy_height;
+    _toolbarView.bottom = _contentView.height;
     [_toolbarView setWithLayout:layout];
 }
 
@@ -897,7 +897,7 @@
                 if (image && stage == YYWebImageStageFinished) {
                     int width = pic.bmiddle.width;
                     int height = pic.bmiddle.height;
-                    CGFloat scale = (height / width) / (imageView.yy_height / imageView.yy_width);
+                    CGFloat scale = (height / width) / (imageView.height / imageView.width);
                     if (scale < 0.99 || isnan(scale)) { // 宽图把左右两边裁掉
                         imageView.contentMode = UIViewContentModeScaleAspectFill;
                         imageView.layer.contentsRect = CGRectMake(0, 0, 1, 1);
@@ -985,8 +985,8 @@
 }
 
 - (void)setLayout:(WBStatusLayout *)layout {
-    self.yy_height = layout.height;
-    self.contentView.yy_height = layout.height;
+    self.height = layout.height;
+    self.contentView.height = layout.height;
     _statusView.layout = layout;
 }
 

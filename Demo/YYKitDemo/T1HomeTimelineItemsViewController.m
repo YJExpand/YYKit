@@ -52,7 +52,7 @@
     
     _fpsLabel = [YYFPSLabel new];
     [_fpsLabel sizeToFit];
-    _fpsLabel.bottom = self.view.yy_height - kT1CellPadding;
+    _fpsLabel.bottom = self.view.height - kT1CellPadding;
     _fpsLabel.left = kT1CellPadding;
     _fpsLabel.alpha = 0;
     [self.view addSubview:_fpsLabel];
@@ -60,7 +60,7 @@
     if (kSystemVersion < 7) {
         _fpsLabel.top -= 44;
         _tableView.top -= 64;
-        _tableView.yy_height += 20;
+        _tableView.height += 20;
     }
     
     
@@ -69,7 +69,7 @@
     self.navigationController.view.userInteractionEnabled = NO;
     UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     indicator.size = CGSizeMake(80, 80);
-    indicator.center = CGPointMake(self.view.yy_width / 2, self.view.yy_height / 2);
+    indicator.center = CGPointMake(self.view.width / 2, self.view.height / 2);
     indicator.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.670];
     indicator.clipsToBounds = YES;
     indicator.layer.cornerRadius = 6;

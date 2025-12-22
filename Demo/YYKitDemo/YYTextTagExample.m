@@ -82,7 +82,7 @@
     if (kiOS7Later) {
         textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     } else {
-        textView.yy_height -= 64;
+        textView.height -= 64;
     }
     textView.scrollIndicatorInsets = textView.contentInset;
     textView.selectedRange = NSMakeRange(text.length, 0);

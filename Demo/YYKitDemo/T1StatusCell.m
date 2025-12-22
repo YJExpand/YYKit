@@ -15,7 +15,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.yy_width = kT1ContentWidth;
+    self.width = kT1ContentWidth;
     self.clipsToBounds = YES;
     self.layer.cornerRadius = kCornerRaadius;
     self.layer.borderColor = [UIColor colorWithWhite:0.865 alpha:1.000].CGColor;
@@ -98,51 +98,51 @@
         case 2: {
             UIImageView *view0 = _imageViews[0];
             view0.origin = CGPointZero;
-            view0.yy_height = self.yy_height;
-            view0.yy_width = (self.yy_width - kT1ImagePadding) / 2;
+            view0.height = self.height;
+            view0.width = (self.width - kT1ImagePadding) / 2;
 
             UIImageView *view1 = _imageViews[1];
             view1.top = 0;
             view1.size = view0.size;
-            view1.right = self.yy_width;
+            view1.right = self.width;
         } break;
         case 3: {
             UIImageView *view0 = _imageViews[0];
             view0.origin = CGPointZero;
-            view0.yy_height = self.yy_height;
-            view0.yy_width = (self.yy_width - kT1ImagePadding) / 2;
+            view0.height = self.height;
+            view0.width = (self.width - kT1ImagePadding) / 2;
             
             UIImageView *view1 = _imageViews[1];
             view1.top = 0;
-            view1.yy_width = view0.yy_width;
-            view1.right = self.yy_width;
-            view1.yy_height = (self.yy_height - kT1ImagePadding) / 2;
+            view1.width = view0.width;
+            view1.right = self.width;
+            view1.height = (self.height - kT1ImagePadding) / 2;
             
             UIImageView *view2 = _imageViews[2];
             view2.size = view1.size;
-            view2.right = self.yy_width;
-            view2.bottom = self.yy_height;
+            view2.right = self.width;
+            view2.bottom = self.height;
         } break;
         case 4: {
             UIImageView *view0 = _imageViews[0];
             view0.origin = CGPointZero;
-            view0.yy_width = (self.yy_width - kT1ImagePadding) / 2;
-            view0.yy_height = (self.yy_height - kT1ImagePadding) / 2;
+            view0.width = (self.width - kT1ImagePadding) / 2;
+            view0.height = (self.height - kT1ImagePadding) / 2;
             
             UIImageView *view1 = _imageViews[1];
             view1.size = view0.size;
             view1.top = 0;
-            view1.right = self.yy_width;
+            view1.right = self.width;
             
             UIImageView *view2 = _imageViews[2];
             view2.size = view0.size;
             view2.left = 0;
-            view2.bottom = self.yy_height;
+            view2.bottom = self.height;
             
             UIImageView *view3 = _imageViews[3];
             view3.size = view0.size;
-            view3.right = self.yy_width;
-            view3.bottom = self.yy_height;
+            view3.right = self.width;
+            view3.bottom = self.height;
         } break;
             
         default: break;
@@ -154,7 +154,7 @@
 @implementation T1StatusQuoteView
 - (instancetype)init {
     self = [super init];
-    self.yy_width = kT1ContentWidth;
+    self.width = kT1ContentWidth;
     self.clipsToBounds = YES;
     self.layer.cornerRadius = kCornerRaadius;
     self.layer.borderWidth = CGFloatFromPixel(1);
@@ -167,7 +167,7 @@
     _nameLabel.ignoreCommonProperties = YES;
     _nameLabel.fadeOnHighlight = NO;
     _nameLabel.fadeOnAsynchronouslyDisplay = NO;
-    _nameLabel.yy_width = kT1QuoteContentWidth;
+    _nameLabel.width = kT1QuoteContentWidth;
     _nameLabel.left = kT1CellPadding;
     [self addSubview:_nameLabel];
     
@@ -177,7 +177,7 @@
     _textLabel.ignoreCommonProperties = YES;
     _textLabel.fadeOnHighlight = NO;
     _textLabel.fadeOnAsynchronouslyDisplay = NO;
-    _textLabel.yy_width = kT1QuoteContentWidth;
+    _textLabel.width = kT1QuoteContentWidth;
     _textLabel.left = kT1CellPadding;
     [self addSubview:_textLabel];
     
@@ -205,11 +205,11 @@
     return self;
 }
 - (void)setWithLayout:(T1StatusLayout *)layout {
-    _nameLabel.yy_height = kT1UserNameFontSize * 2;
+    _nameLabel.height = kT1UserNameFontSize * 2;
     _nameLabel.centerY = kT1CellPadding + kT1UserNameFontSize / 2;
     _nameLabel.textLayout = layout.quotedNameTextLayout;
     
-    _textLabel.yy_height = CGRectGetMaxY(layout.quotedTextLayout.textBoundingRect);
+    _textLabel.height = CGRectGetMaxY(layout.quotedTextLayout.textBoundingRect);
     _textLabel.top = kT1CellPadding + kT1UserNameFontSize + kT1CellInnerPadding;
     _textLabel.textLayout = layout.quotedTextLayout;
 }
@@ -219,13 +219,13 @@
 
 - (instancetype)init {
     self = [super init];
-    self.yy_width = kT1ContentWidth;
-    self.yy_height = 32;
+    self.width = kT1ContentWidth;
+    self.height = 32;
     __weak typeof(self) _self = self;
     
     _replyButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _replyButton.size = CGSizeMake(32, 32);
-    _replyButton.centerY = self.yy_height / 2;
+    _replyButton.centerY = self.height / 2;
     _replyButton.centerX = 6;
     _replyButton.adjustsImageWhenHighlighted = NO;
     _replyButton.exclusiveTouch = YES;
@@ -256,13 +256,13 @@
     [self addSubview:_retweetLabel];
     
     _retweetButton.size = CGSizeMake(32, 32);
-    _retweetButton.centerY = self.yy_height / 2;
+    _retweetButton.centerY = self.height / 2;
     _retweetButton.left = kT1ContentWidth * 0.28 + _replyButton.left;
     _retweetImageView.size = CGSizeMake(32, 32);
     _retweetImageView.contentMode = UIViewContentModeCenter;
     _retweetImageView.center = _retweetButton.center;
     _retweetImageView.image = [T1Helper imageNamed:@"icn_tweet_action_inline_retweet_off"];
-    _retweetLabel.yy_height = _retweetButton.yy_height;
+    _retweetLabel.height = _retweetButton.height;
     _retweetLabel.left = _retweetImageView.right - 3;
     _retweetLabel.userInteractionEnabled = NO;
     _replyButton.exclusiveTouch = YES;
@@ -291,13 +291,13 @@
     [self addSubview:_favoriteLabel];
     
     _favoriteButton.size = CGSizeMake(32, 32);
-    _favoriteButton.centerY = self.yy_height / 2;
+    _favoriteButton.centerY = self.height / 2;
     _favoriteButton.left = kT1ContentWidth * 0.28 + _retweetButton.left;
     _favoriteImageView.size = CGSizeMake(32, 32);
     _favoriteImageView.contentMode = UIViewContentModeCenter;
     _favoriteImageView.center = _favoriteButton.center;
     _favoriteImageView.image = [T1Helper imageNamed:@"icn_tweet_action_inline_favorite_off"];
-    _favoriteLabel.yy_height = _favoriteButton.yy_height;
+    _favoriteLabel.height = _favoriteButton.height;
     _favoriteLabel.left = _favoriteImageView.right - 4;
     _favoriteLabel.userInteractionEnabled = NO;
     _favoriteLabel.exclusiveTouch = YES;
@@ -320,8 +320,8 @@
     
     _followButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _followButton.size = CGSizeMake(32, 32);
-    _followButton.centerY = self.yy_height / 2;
-    _followButton.right = self.yy_width - 3;
+    _followButton.centerY = self.height / 2;
+    _followButton.right = self.width - 3;
     _followButton.adjustsImageWhenHighlighted = NO;
     _followButton.exclusiveTouch = YES;
     [_followButton setImage:[T1Helper imageNamed:@"icn_tweet_action_inline_follow_off_ipad_experiment"] forState:UIControlStateNormal];
@@ -361,22 +361,22 @@
     
     if (layout.retweetCountTextLayout) {
         _retweetLabel.hidden = NO;
-        _retweetLabel.yy_width = layout.retweetCountTextLayout.textBoundingSize.width + 5;
+        _retweetLabel.width = layout.retweetCountTextLayout.textBoundingSize.width + 5;
         _retweetLabel.textLayout = layout.retweetCountTextLayout;
-        _retweetButton.yy_width = _retweetLabel.right - _retweetButton.left;
+        _retweetButton.width = _retweetLabel.right - _retweetButton.left;
     } else {
         _retweetLabel.hidden = YES;
-        _retweetButton.yy_width = _retweetButton.yy_height;
+        _retweetButton.width = _retweetButton.height;
     }
     
     if (layout.favoriteCountTextLayout) {
         _favoriteLabel.hidden = NO;
-        _favoriteLabel.yy_width = layout.favoriteCountTextLayout.textBoundingSize.width + 5;
+        _favoriteLabel.width = layout.favoriteCountTextLayout.textBoundingSize.width + 5;
         _favoriteLabel.textLayout = layout.favoriteCountTextLayout;
-        _favoriteButton.yy_width = _favoriteLabel.right - _favoriteButton.left;
+        _favoriteButton.width = _favoriteLabel.right - _favoriteButton.left;
     } else {
         _favoriteLabel.hidden = YES;
-        _favoriteButton.yy_width = _favoriteButton.yy_height;
+        _favoriteButton.width = _favoriteButton.height;
     }
     
     if (tweet.user.following) {
@@ -408,12 +408,12 @@
     
     if (layout.retweetCountTextLayout) {
         _retweetLabel.hidden = NO;
-        _retweetLabel.yy_width = layout.retweetCountTextLayout.textBoundingSize.width + 5;
+        _retweetLabel.width = layout.retweetCountTextLayout.textBoundingSize.width + 5;
         _retweetLabel.textLayout = layout.retweetCountTextLayout;
-        _retweetButton.yy_width = _retweetLabel.right - _retweetButton.left;
+        _retweetButton.width = _retweetLabel.right - _retweetButton.left;
     } else {
         _retweetLabel.hidden = YES;
-        _retweetButton.yy_width = _retweetButton.yy_height;
+        _retweetButton.width = _retweetButton.height;
     }
 }
 
@@ -452,12 +452,12 @@
     
     if (layout.favoriteCountTextLayout) {
         _favoriteLabel.hidden = NO;
-        _favoriteLabel.yy_width = layout.favoriteCountTextLayout.textBoundingSize.width + 5;
+        _favoriteLabel.width = layout.favoriteCountTextLayout.textBoundingSize.width + 5;
         _favoriteLabel.textLayout = layout.favoriteCountTextLayout;
-        _favoriteButton.yy_width = _favoriteLabel.right - _favoriteButton.left;
+        _favoriteButton.width = _favoriteLabel.right - _favoriteButton.left;
     } else {
         _favoriteLabel.hidden = YES;
-        _favoriteButton.yy_width = _favoriteButton.yy_height;
+        _favoriteButton.width = _favoriteButton.height;
     }
 }
 
@@ -479,7 +479,7 @@
 
 - (instancetype)init {
     self = [super init];
-    self.yy_width = kScreenWidth;
+    self.width = kScreenWidth;
     self.backgroundColor = [UIColor whiteColor];
     self.exclusiveTouch = YES;
     self.clipsToBounds = YES;
@@ -520,20 +520,20 @@
     _conversationTopJoin = [UIView new];
     _conversationTopJoin.userInteractionEnabled = NO;
     _conversationTopJoin.hidden = YES;
-    _conversationTopJoin.yy_width = 3;
+    _conversationTopJoin.width = 3;
     _conversationTopJoin.backgroundColor = UIColorHex(e1e8ed);
     _conversationTopJoin.clipsToBounds = YES;
-    _conversationTopJoin.layer.cornerRadius = _conversationTopJoin.yy_width / 2;
+    _conversationTopJoin.layer.cornerRadius = _conversationTopJoin.width / 2;
     _conversationTopJoin.centerX = _avatarView.centerX;
     [self addSubview:_conversationTopJoin];
     
     _conversationBottomJoin = [UIView new];
     _conversationBottomJoin.userInteractionEnabled = NO;
     _conversationBottomJoin.hidden = YES;
-    _conversationBottomJoin.yy_width = 3;
+    _conversationBottomJoin.width = 3;
     _conversationBottomJoin.backgroundColor = _conversationTopJoin.backgroundColor;
     _conversationBottomJoin.clipsToBounds = YES;
-    _conversationBottomJoin.layer.cornerRadius = _conversationTopJoin.yy_width / 2;
+    _conversationBottomJoin.layer.cornerRadius = _conversationTopJoin.width / 2;
     _conversationBottomJoin.centerX = _avatarView.centerX;
     [self addSubview:_conversationBottomJoin];
     
@@ -545,8 +545,8 @@
     _nameLabel.fadeOnHighlight = NO;
     _nameLabel.fadeOnAsynchronouslyDisplay = NO;
     _nameLabel.left = kT1ContentLeft;
-    _nameLabel.yy_width = kT1ContentWidth;
-    _nameLabel.yy_height = kT1UserNameFontSize * 2;
+    _nameLabel.width = kT1ContentWidth;
+    _nameLabel.height = kT1UserNameFontSize * 2;
     _nameLabel.userInteractionEnabled = NO;
     _nameLabel.exclusiveTouch = YES;
     [self addSubview:_nameLabel];
@@ -568,8 +568,8 @@
     _textLabel.fadeOnHighlight = NO;
     _textLabel.fadeOnAsynchronouslyDisplay = NO;
     _textLabel.left = kT1ContentLeft;
-    _textLabel.yy_width = kT1ContentWidth;
-    _textLabel.yy_width += kT1TextContainerInset * 2;
+    _textLabel.width = kT1ContentWidth;
+    _textLabel.width += kT1TextContainerInset * 2;
     _textLabel.left -= kT1TextContainerInset;
     __weak typeof(self) _self = self;
     _textLabel.highlightTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
@@ -594,8 +594,8 @@
     
     
     _topLine = [UIView new];
-    _topLine.yy_width = kScreenWidth;
-    _topLine.yy_height = CGFloatFromPixel(1);
+    _topLine.width = kScreenWidth;
+    _topLine.height = CGFloatFromPixel(1);
     _topLine.backgroundColor = [UIColor colorWithWhite:0.823 alpha:1.000];
     [self addSubview:_topLine];
     
@@ -643,12 +643,12 @@
 }
 
 - (void)setWithLayout:(T1StatusLayout *)layout {
-    self.yy_height = layout.height;
+    self.height = layout.height;
     self.topLine.hidden = !layout.showTopLine;
     if (layout.isConversationSplit) {
         _conversationTopJoin.hidden = NO;
         _conversationTopJoin.top = 3;
-        _conversationTopJoin.yy_height = self.yy_height - 6;
+        _conversationTopJoin.height = self.height - 6;
         
         _avatarView.hidden = YES;
         _nameLabel.hidden = YES;
@@ -700,7 +700,7 @@
     if (layout.textLayout) {
         _textLabel.hidden = NO;
         _textLabel.top = layout.textTop;
-        _textLabel.yy_height = layout.textHeight;
+        _textLabel.height = layout.textHeight;
         _textLabel.textLayout = layout.textLayout;
     } else {
         _textLabel.hidden = YES;
@@ -709,7 +709,7 @@
     if (layout.images) {
         _mediaView.hidden = NO;
         _mediaView.top = layout.imagesTop;
-        _mediaView.yy_height = layout.imagesHeight;
+        _mediaView.height = layout.imagesHeight;
         [_mediaView setWithMedias:layout.images];
     } else {
         _mediaView.hidden = YES;
@@ -719,13 +719,13 @@
     if (layout.quoteHeight > 0) {
         _quoteView.hidden = NO;
         _quoteView.top = layout.quoteTop;
-        _quoteView.yy_height = layout.quoteHeight;
+        _quoteView.height = layout.quoteHeight;
         [_quoteView setWithLayout:layout];
     } else {
         _quoteView.hidden = YES;
     }
     
-    _inlineActionsView.centerY = self.yy_height - 19;
+    _inlineActionsView.centerY = self.height - 19;
     [_inlineActionsView setWithLayout:layout];
     
     
@@ -733,12 +733,12 @@
     self.conversationBottomJoin.hidden = !layout.showConversationBottomJoin;
     if (layout.showConversationTopJoin) {
         _conversationTopJoin.top = - 5;
-        _conversationTopJoin.yy_height = _avatarView.top - _conversationTopJoin.top - 3;
+        _conversationTopJoin.height = _avatarView.top - _conversationTopJoin.top - 3;
     }
     
     if (layout.showConversationBottomJoin) {
         _conversationBottomJoin.top = _avatarView.bottom + 3;
-        _conversationBottomJoin.yy_height = self.yy_height - _conversationBottomJoin.top + 5;
+        _conversationBottomJoin.height = self.height - _conversationBottomJoin.top + 5;
     }
 }
 
@@ -768,8 +768,8 @@
 
 - (void)setLayout:(T1StatusLayout *)layout {
     _layout = layout;
-    self.contentView.yy_height = layout.height;
-    _statusView.yy_height = layout.height;
+    self.contentView.height = layout.height;
+    _statusView.height = layout.height;
     [_statusView setWithLayout:layout];
 }
 

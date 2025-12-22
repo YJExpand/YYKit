@@ -220,8 +220,8 @@
     
     YYLabel *label = [YYLabel new];
     label.attributedText = text;
-    label.yy_width = self.view.yy_width;
-    label.yy_height = self.view.yy_height - (kiOS7Later ? 64 : 44);
+    label.width = self.view.width;
+    label.height = self.view.height - (kiOS7Later ? 64 : 44);
     label.top = (kiOS7Later ? 64 : 0);
     label.textAlignment = NSTextAlignmentCenter;
     label.textVerticalAlignment = YYTextVerticalAlignmentCenter;
@@ -256,9 +256,9 @@
     label.textAlignment = NSTextAlignmentCenter;
     label.textColor = [UIColor whiteColor];
     label.backgroundColor = [UIColor colorWithRed:0.033 green:0.685 blue:0.978 alpha:0.730];
-    label.yy_width = self.view.yy_width;
+    label.width = self.view.width;
     label.textContainerInset = UIEdgeInsetsMake(padding, padding, padding, padding);
-    label.yy_height = [msg heightForFont:label.font width:label.yy_width] + 2 * padding;
+    label.height = [msg heightForFont:label.font width:label.width] + 2 * padding;
     
     label.bottom = (kiOS7Later ? 64 : 0);
     [self.view addSubview:label];

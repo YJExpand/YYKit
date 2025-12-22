@@ -77,24 +77,24 @@
     
     _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     _indicator.size = CGSizeMake(50, 50);
-    _indicator.centerX = _hud.yy_width / 2;
-    _indicator.centerY = _hud.yy_height / 2 - 9;
+    _indicator.centerX = _hud.width / 2;
+    _indicator.centerY = _hud.height / 2 - 9;
     [_hud addSubview:_indicator];
     
     UILabel *label = [UILabel new];
     label.textAlignment = NSTextAlignmentCenter;
-    label.size = CGSizeMake(_hud.yy_width, 20);
+    label.size = CGSizeMake(_hud.width, 20);
     label.text = @"See logs in Xcode";
     label.font = [UIFont systemFontOfSize:12];
     label.textColor = [UIColor whiteColor];
-    label.centerX = _hud.yy_width / 2;
-    label.bottom = _hud.yy_height - 8;
+    label.centerX = _hud.width / 2;
+    label.bottom = _hud.height - 8;
     [_hud addSubview:label];
 }
 
 - (void)startHUD {
     UIWindow *window = [[UIApplication sharedApplication].windows firstObject];
-    _hud.center = CGPointMake(window.yy_width / 2, window.yy_height / 2);
+    _hud.center = CGPointMake(window.width / 2, window.height / 2);
     [_indicator startAnimating];
     
     [window addSubview:_hud];

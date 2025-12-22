@@ -82,7 +82,7 @@
     if (_textView) return;
     _textView = [YYTextView new];
     if (kSystemVersion < 7) _textView.top = -64;
-    _textView.size = CGSizeMake(self.view.yy_width, self.view.yy_height);
+    _textView.size = CGSizeMake(self.view.width, self.view.height);
     _textView.textContainerInset = UIEdgeInsetsMake(12, 16, 12, 16);
     _textView.contentInset = UIEdgeInsetsMake(64, 0, kToolbarHeight, 0);
     _textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -128,22 +128,22 @@
     if (_toolbar) return;
     _toolbar = [UIView new];
     _toolbar.backgroundColor = [UIColor whiteColor];
-    _toolbar.size = CGSizeMake(self.view.yy_width, kToolbarHeight);
+    _toolbar.size = CGSizeMake(self.view.width, kToolbarHeight);
     _toolbar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     
     _toolbarBackground = [UIView new];
     _toolbarBackground.backgroundColor = UIColorHex(F9F9F9);
-    _toolbarBackground.size = CGSizeMake(_toolbar.yy_width, 46);
-    _toolbarBackground.bottom = _toolbar.yy_height;
+    _toolbarBackground.size = CGSizeMake(_toolbar.width, 46);
+    _toolbarBackground.bottom = _toolbar.height;
     _toolbarBackground.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     [_toolbar addSubview:_toolbarBackground];
     
-    _toolbarBackground.yy_height = 300; // extend
+    _toolbarBackground.height = 300; // extend
     
     UIView *line = [UIView new];
     line.backgroundColor = UIColorHex(BFBFBF);
-    line.yy_width = _toolbarBackground.yy_width;
-    line.yy_height = CGFloatFromPixel(1);
+    line.width = _toolbarBackground.width;
+    line.height = CGFloatFromPixel(1);
     line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [_toolbarBackground addSubview:line];
     
@@ -152,7 +152,7 @@
     _toolbarPOIButton.centerY = 35 / 2.0;
     _toolbarPOIButton.left = 5;
     _toolbarPOIButton.clipsToBounds = YES;
-    _toolbarPOIButton.layer.cornerRadius = _toolbarPOIButton.yy_height / 2;
+    _toolbarPOIButton.layer.cornerRadius = _toolbarPOIButton.height / 2;
     _toolbarPOIButton.layer.borderColor = UIColorHex(e4e4e4).CGColor;
     _toolbarPOIButton.layer.borderWidth = CGFloatFromPixel(1);
     _toolbarPOIButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -167,10 +167,10 @@
     _toolbarGroupButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _toolbarGroupButton.size = CGSizeMake(62, 26);
     _toolbarGroupButton.centerY = 35 / 2.0;
-    _toolbarGroupButton.right = _toolbar.yy_width - 5;
+    _toolbarGroupButton.right = _toolbar.width - 5;
     _toolbarGroupButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
     _toolbarGroupButton.clipsToBounds = YES;
-    _toolbarGroupButton.layer.cornerRadius = _toolbarGroupButton.yy_height / 2;
+    _toolbarGroupButton.layer.cornerRadius = _toolbarGroupButton.height / 2;
     _toolbarGroupButton.layer.borderColor = UIColorHex(e4e4e4).CGColor;
     _toolbarGroupButton.layer.borderWidth = CGFloatFromPixel(1);
     _toolbarGroupButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -193,14 +193,14 @@
     _toolbarExtraButton = [self _toolbarButtonWithImage:@"message_add_background"
                                               highlight:@"message_add_background_highlighted"];
     
-    CGFloat one = _toolbar.yy_width / 5;
+    CGFloat one = _toolbar.width / 5;
     _toolbarPictureButton.centerX = one * 0.5;
     _toolbarAtButton.centerX = one * 1.5;
     _toolbarTopicButton.centerX = one * 2.5;
     _toolbarEmoticonButton.centerX = one * 3.5;
     _toolbarExtraButton.centerX = one * 4.5;
     
-    _toolbar.bottom = self.view.yy_height;
+    _toolbar.bottom = self.view.height;
     [self.view addSubview:_toolbar];
 }
 

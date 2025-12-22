@@ -28,25 +28,25 @@
     _imageView = [UIImageView new];
     _imageView.size = CGSizeMake(300, 300);
     _imageView.backgroundColor = [UIColor colorWithWhite:0.790 alpha:1.000];
-    _imageView.centerX = self.view.yy_width / 2;
+    _imageView.centerX = self.view.width / 2;
     
     _seg0 = [[UISegmentedControl alloc] initWithItems:@[@"baseline",@"progressive/interlaced"]];
     _seg0.selectedSegmentIndex = 0;
-    _seg0.size = CGSizeMake(_imageView.yy_width, 30);
-    _seg0.centerX = self.view.yy_width / 2;
+    _seg0.size = CGSizeMake(_imageView.width, 30);
+    _seg0.centerX = self.view.width / 2;
     
     _seg1 = [[UISegmentedControl alloc] initWithItems:@[@"JPEG", @"PNG", @"GIF"]];
     _seg1.frame = _seg0.frame;
     _seg1.selectedSegmentIndex = 0;
     
     _slider0 = [UISlider new];
-    _slider0.yy_width = _seg0.yy_width;
+    _slider0.width = _seg0.width;
     [_slider0 sizeToFit];
-    if (kSystemVersion < 7) _slider0.yy_height = 20;
+    if (kSystemVersion < 7) _slider0.height = 20;
     _slider0.minimumValue = 0;
     _slider0.maximumValue = 1.05;
     _slider0.value = 0;
-    _slider0.centerX = self.view.yy_width / 2;
+    _slider0.centerX = self.view.width / 2;
     
     _slider1 = [UISlider new];
     _slider1.frame = _slider0.frame;

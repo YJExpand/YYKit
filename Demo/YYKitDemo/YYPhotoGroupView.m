@@ -37,8 +37,8 @@
 
 - (BOOL)shouldClipToTop:(CGSize)imageSize forView:(UIView *)view {
     if (imageSize.width < 1 || imageSize.height < 1) return NO;
-    if (view.yy_width < 1 || view.yy_height < 1) return NO;
-    return imageSize.height / imageSize.width > view.yy_width / view.yy_height;
+    if (view.width < 1 || view.height < 1) return NO;
+    return imageSize.height / imageSize.width > view.width / view.height;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -105,7 +105,7 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    _progressLayer.center = CGPointMake(self.yy_width / 2, self.yy_height / 2);
+    _progressLayer.center = CGPointMake(self.width / 2, self.height / 2);
 }
 
 - (void)setItem:(YYPhotoGroupItem *)item {
@@ -161,25 +161,25 @@
 
 - (void)resizeSubviewSize {
     _imageContainerView.origin = CGPointZero;
-    _imageContainerView.yy_width = self.yy_width;
+    _imageContainerView.width = self.width;
     
     UIImage *image = _imageView.image;
-    if (image.size.height / image.size.width > self.yy_height / self.yy_width) {
-        _imageContainerView.yy_height = floor(image.size.height / (image.size.width / self.yy_width));
+    if (image.size.height / image.size.width > self.height / self.width) {
+        _imageContainerView.height = floor(image.size.height / (image.size.width / self.width));
     } else {
-        CGFloat height = image.size.height / image.size.width * self.yy_width;
-        if (height < 1 || isnan(height)) height = self.yy_height;
+        CGFloat height = image.size.height / image.size.width * self.width;
+        if (height < 1 || isnan(height)) height = self.height;
         height = floor(height);
-        _imageContainerView.yy_height = height;
-        _imageContainerView.centerY = self.yy_height / 2;
+        _imageContainerView.height = height;
+        _imageContainerView.centerY = self.height / 2;
     }
-    if (_imageContainerView.yy_height > self.yy_height && _imageContainerView.yy_height - self.yy_height <= 1) {
-        _imageContainerView.yy_height = self.yy_height;
+    if (_imageContainerView.height > self.height && _imageContainerView.height - self.height <= 1) {
+        _imageContainerView.height = self.height;
     }
-    self.contentSize = CGSizeMake(self.yy_width, MAX(_imageContainerView.yy_height, self.yy_height));
+    self.contentSize = CGSizeMake(self.width, MAX(_imageContainerView.height, self.height));
     [self scrollRectToVisible:self.bounds animated:NO];
     
-    if (_imageContainerView.yy_height <= self.yy_height) {
+    if (_imageContainerView.height <= self.height) {
         self.alwaysBounceVertical = NO;
     } else {
         self.alwaysBounceVertical = YES;
@@ -329,7 +329,7 @@
     _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     _scrollView = UIScrollView.new;
-    _scrollView.frame = CGRectMake(-kPadding / 2, 0, self.yy_width + kPadding, self.yy_height);
+    _scrollView.frame = CGRectMake(-kPadding / 2, 0, self.width + kPadding, self.height);
     _scrollView.delegate = self;
     _scrollView.scrollsToTop = NO;
     _scrollView.pagingEnabled = YES;
@@ -343,9 +343,9 @@
     _pager = [[UIPageControl alloc] init];
     _pager.hidesForSinglePage = YES;
     _pager.userInteractionEnabled = NO;
-    _pager.yy_width = self.yy_width - 36;
-    _pager.yy_height = 10;
-    _pager.center = CGPointMake(self.yy_width / 2, self.yy_height - 18);
+    _pager.width = self.width - 36;
+    _pager.height = 10;
+    _pager.center = CGPointMake(self.width / 2, self.height - 18);
     _pager.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
     [self addSubview:_background];
@@ -397,8 +397,8 @@
     self.pager.currentPage = page;
     [_toContainerView addSubview:self];
     
-    _scrollView.contentSize = CGSizeMake(_scrollView.yy_width * self.groupItems.count, _scrollView.yy_height);
-    [_scrollView scrollRectToVisible:CGRectMake(_scrollView.yy_width * _pager.currentPage, 0, _scrollView.yy_width, _scrollView.yy_height) animated:NO];
+    _scrollView.contentSize = CGSizeMake(_scrollView.width * self.groupItems.count, _scrollView.height);
+    [_scrollView scrollRectToVisible:CGRectMake(_scrollView.width * _pager.currentPage, 0, _scrollView.width, _scrollView.height) animated:NO];
     [self scrollViewDidScroll:_scrollView];
     
     [UIView setAnimationsEnabled:YES];
@@ -423,10 +423,10 @@
     if (item.thumbClippedToTop) {
         CGRect fromFrame = [_fromView convertRect:_fromView.bounds toView:cell];
         CGRect originFrame = cell.imageContainerView.frame;
-        CGFloat scale = fromFrame.size.width / cell.imageContainerView.yy_width;
+        CGFloat scale = fromFrame.size.width / cell.imageContainerView.width;
         
         cell.imageContainerView.centerX = CGRectGetMidX(fromFrame);
-        cell.imageContainerView.yy_height = fromFrame.size.height / scale;
+        cell.imageContainerView.height = fromFrame.size.height / scale;
         cell.imageContainerView.layer.transformScale = scale;
         cell.imageContainerView.centerY = CGRectGetMidY(fromFrame);
         
@@ -547,11 +547,11 @@
         if (isFromImageClipped) {
             
             CGRect fromFrame = [fromView convertRect:fromView.bounds toView:cell];
-            CGFloat scale = fromFrame.size.width / cell.imageContainerView.yy_width * cell.zoomScale;
-            CGFloat height = fromFrame.size.height / fromFrame.size.width * cell.imageContainerView.yy_width;
-            if (isnan(height)) height = cell.imageContainerView.yy_height;
+            CGFloat scale = fromFrame.size.width / cell.imageContainerView.width * cell.zoomScale;
+            CGFloat height = fromFrame.size.height / fromFrame.size.width * cell.imageContainerView.width;
+            if (isnan(height)) height = cell.imageContainerView.height;
             
-            cell.imageContainerView.yy_height = height;
+            cell.imageContainerView.height = height;
             cell.imageContainerView.center = CGPointMake(CGRectGetMidX(fromFrame), CGRectGetMinY(fromFrame));
             cell.imageContainerView.layer.transformScale = scale;
             
@@ -588,8 +588,8 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self updateCellsForReuse];
     
-    CGFloat floatPage = _scrollView.contentOffset.x / _scrollView.yy_width;
-    NSInteger page = _scrollView.contentOffset.x / _scrollView.yy_width + 0.5;
+    CGFloat floatPage = _scrollView.contentOffset.x / _scrollView.width;
+    NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
     
     for (NSInteger i = page - 1; i <= page + 1; i++) { // preload left and right cell
         if (i >= 0 && i < self.groupItems.count) {
@@ -597,7 +597,7 @@
             if (!cell) {
                 YYPhotoGroupCell *cell = [self dequeueReusableCell];
                 cell.page = i;
-                cell.left = (self.yy_width + kPadding) * i + kPadding / 2;
+                cell.left = (self.width + kPadding) * i + kPadding / 2;
                 
                 if (_isPresented) {
                     cell.item = self.groupItems[i];
@@ -642,8 +642,8 @@
 - (void)updateCellsForReuse {
     for (YYPhotoGroupCell *cell in _cells) {
         if (cell.superview) {
-            if (cell.left > _scrollView.contentOffset.x + _scrollView.yy_width * 2||
-                cell.right < _scrollView.contentOffset.x - _scrollView.yy_width) {
+            if (cell.left > _scrollView.contentOffset.x + _scrollView.width * 2||
+                cell.right < _scrollView.contentOffset.x - _scrollView.width) {
                 [cell removeFromSuperview];
                 cell.page = -1;
                 cell.item = nil;
@@ -682,7 +682,7 @@
 }
 
 - (NSInteger)currentPage {
-    NSInteger page = _scrollView.contentOffset.x / _scrollView.yy_width + 0.5;
+    NSInteger page = _scrollView.contentOffset.x / _scrollView.width + 0.5;
     if (page >= _groupItems.count) page = (NSInteger)_groupItems.count - 1;
     if (page < 0) page = 0;
     return page;
@@ -700,15 +700,15 @@
     label.numberOfLines = 0;
     
     UIView *hud = [UIView new];
-    hud.size = CGSizeMake(label.yy_width + 20, label.yy_height + 20);
+    hud.size = CGSizeMake(label.width + 20, label.height + 20);
     hud.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.650];
     hud.clipsToBounds = YES;
     hud.layer.cornerRadius = 8;
     
-    label.center = CGPointMake(hud.yy_width / 2, hud.yy_height / 2);
+    label.center = CGPointMake(hud.width / 2, hud.height / 2);
     [hud addSubview:label];
     
-    hud.center = CGPointMake(self.yy_width / 2, self.yy_height / 2);
+    hud.center = CGPointMake(self.width / 2, self.height / 2);
     hud.alpha = 0;
     [self addSubview:hud];
     
@@ -735,8 +735,8 @@
         } else {
             CGPoint touchPoint = [g locationInView:tile.imageView];
             CGFloat newZoomScale = tile.maximumZoomScale;
-            CGFloat xsize = self.yy_width / newZoomScale;
-            CGFloat ysize = self.yy_height / newZoomScale;
+            CGFloat xsize = self.width / newZoomScale;
+            CGFloat ysize = self.height / newZoomScale;
             [tile zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
         }
     }
@@ -806,7 +806,7 @@
                 BOOL moveToTop = (v.y < - 50 || (v.y < 50 && deltaY < 0));
                 CGFloat vy = fabs(v.y);
                 if (vy < 1) vy = 1;
-                CGFloat duration = (moveToTop ? _scrollView.bottom : self.yy_height - _scrollView.top) / vy;
+                CGFloat duration = (moveToTop ? _scrollView.bottom : self.height - _scrollView.top) / vy;
                 duration *= 0.8;
                 duration = YY_CLAMP(duration, 0.05, 0.3);
                 
@@ -816,7 +816,7 @@
                     if (moveToTop) {
                         _scrollView.bottom = 0;
                     } else {
-                        _scrollView.top = self.yy_height;
+                        _scrollView.top = self.height;
                     }
                 } completion:^(BOOL finished) {
                     [self removeFromSuperview];

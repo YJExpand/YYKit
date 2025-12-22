@@ -52,7 +52,7 @@
     if (kiOS7Later) {
         textView.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     } else {
-        textView.height -= 64;
+        textView.yy_height -= 64;
     }
     textView.contentInset = UIEdgeInsetsMake(toolbar.bottom, 0, 0, 0);
     textView.scrollIndicatorInsets = textView.contentInset;
@@ -72,13 +72,13 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:14];
     label.text = @"Vertical:";
-    label.size = CGSizeMake([label.text widthForFont:label.font] + 2, toolbar.height);
+    label.size = CGSizeMake([label.text widthForFont:label.font] + 2, toolbar.yy_height);
     label.left = 10;
     [toolbar addSubview:label];
     
     _verticalSwitch = [UISwitch new];
     [_verticalSwitch sizeToFit];
-    _verticalSwitch.centerY = toolbar.height / 2;
+    _verticalSwitch.centerY = toolbar.yy_height / 2;
     _verticalSwitch.left = label.right - 5;
     _verticalSwitch.layer.transformScale = 0.8;
     [_verticalSwitch addBlockForControlEvents:UIControlEventValueChanged block:^(UISwitch *switcher) {
@@ -96,14 +96,14 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:14];
     label.text = @"Debug:";
-    label.size = CGSizeMake([label.text widthForFont:label.font] + 2, toolbar.height);
+    label.size = CGSizeMake([label.text widthForFont:label.font] + 2, toolbar.yy_height);
     label.left = _verticalSwitch.right + 5;
     [toolbar addSubview:label];
     
     _debugSwitch = [UISwitch new];
     [_debugSwitch sizeToFit];
     _debugSwitch.on = [YYTextExampleHelper isDebug];
-    _debugSwitch.centerY = toolbar.height / 2;
+    _debugSwitch.centerY = toolbar.yy_height / 2;
     _debugSwitch.left = label.right - 5;
     _debugSwitch.layer.transformScale = 0.8;
     [_debugSwitch addBlockForControlEvents:UIControlEventValueChanged block:^(UISwitch *switcher) {
@@ -115,13 +115,13 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont systemFontOfSize:14];
     label.text = @"Exclusion:";
-    label.size = CGSizeMake([label.text widthForFont:label.font] + 2, toolbar.height);
+    label.size = CGSizeMake([label.text widthForFont:label.font] + 2, toolbar.yy_height);
     label.left = _debugSwitch.right + 5;
     [toolbar addSubview:label];
     
     _exclusionSwitch = [UISwitch new];
     [_exclusionSwitch sizeToFit];
-    _exclusionSwitch.centerY = toolbar.height / 2;
+    _exclusionSwitch.centerY = toolbar.yy_height / 2;
     _exclusionSwitch.left = label.right - 5;
     _exclusionSwitch.layer.transformScale = 0.8;
     [_exclusionSwitch addBlockForControlEvents:UIControlEventValueChanged block:^(UISwitch *switcher) {
@@ -155,7 +155,7 @@
     UIImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
     imageView.clipsToBounds = YES;
     imageView.userInteractionEnabled = YES;
-    imageView.layer.cornerRadius = imageView.height / 2;
+    imageView.layer.cornerRadius = imageView.yy_height / 2;
     imageView.center = CGPointMake(kScreenWidth / 2, kScreenWidth / 2);
     self.imageView = imageView;
     
@@ -200,7 +200,7 @@
     BOOL clipped = NO;
     if (_textView.isVerticalForm && transition.toVisible) {
         CGRect rect = [[YYTextKeyboardManager defaultManager] convertRect:transition.toFrame toView:self.view];
-        if (CGRectGetMaxY(rect) == self.view.height) {
+        if (CGRectGetMaxY(rect) == self.view.yy_height) {
             CGRect textFrame = self.view.bounds;
             textFrame.size.height -= rect.size.height;
             _textView.frame = textFrame;

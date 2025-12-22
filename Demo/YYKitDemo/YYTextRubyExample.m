@@ -85,9 +85,9 @@
     
     YYLabel *label = [YYLabel new];
     label.attributedText = text;
-    label.width = self.view.width - 60;
-    label.centerX = self.view.width / 2;
-    label.height = self.view.height - (kiOS7Later ? 64 : 44) - 60;
+    label.yy_width = self.view.yy_width - 60;
+    label.centerX = self.view.yy_width / 2;
+    label.yy_height = self.view.yy_height - (kiOS7Later ? 64 : 44) - 60;
     label.top = (kiOS7Later ? 64 : 0) + 30;
     label.textAlignment = NSTextAlignmentCenter;
     label.textVerticalAlignment = YYTextVerticalAlignmentCenter;

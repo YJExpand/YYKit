@@ -25,8 +25,8 @@ static BOOL DebugEnabled = NO;
     UIView *view = [UIView new];
     view.size = CGSizeMake(40, 44);
     [view addSubview:switcher];
-    switcher.centerX = view.width / 2;
-    switcher.centerY = view.height / 2;
+    switcher.centerX = view.yy_width / 2;
+    switcher.centerY = view.yy_height / 2;
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:view];
     vc.navigationItem.rightBarButtonItem = item;

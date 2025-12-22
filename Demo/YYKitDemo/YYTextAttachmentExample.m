@@ -88,7 +88,7 @@
     _label.numberOfLines = 0;
     _label.textVerticalAlignment = YYTextVerticalAlignmentTop;
     _label.size = CGSizeMake(260, 260);
-    _label.center = CGPointMake(self.view.width / 2, self.view.height / 2 - (kiOS7Later ? 0 : 32));
+    _label.center = CGPointMake(self.view.yy_width / 2, self.view.yy_height / 2 - (kiOS7Later ? 0 : 32));
     _label.attributedText = text;
     [self addSeeMoreButton];
     [self.view addSubview:_label];
@@ -99,7 +99,7 @@
     
     __weak typeof(_label) wlabel = _label;
     UIView *dot = [self newDotView];
-    dot.center = CGPointMake(_label.width, _label.height);
+    dot.center = CGPointMake(_label.yy_width, _label.yy_height);
     dot.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
     [_label addSubview:dot];
     YYGestureRecognizer *gesture = [YYGestureRecognizer new];
@@ -107,8 +107,8 @@
         if (state != YYGestureRecognizerStateMoved) return;
         CGFloat width = gesture.currentPoint.x;
         CGFloat height = gesture.currentPoint.y;
-        wlabel.width = width < 30 ? 30 : width;
-        wlabel.height = height < 30 ? 30 : height;
+        wlabel.yy_width = width < 30 ? 30 : width;
+        wlabel.yy_height = height < 30 ? 30 : height;
     };
     gesture.delegate = self;
     [_label addGestureRecognizer:gesture];
@@ -145,8 +145,8 @@
     dot.size = CGSizeMake(10, 10);
     dot.backgroundColor = [UIColor colorWithRed:0.000 green:0.463 blue:1.000 alpha:1.000];
     dot.clipsToBounds = YES;
-    dot.layer.cornerRadius = dot.height / 2;
-    dot.center = CGPointMake(view.width / 2, view.height / 2);
+    dot.layer.cornerRadius = dot.yy_height / 2;
+    dot.center = CGPointMake(view.yy_width / 2, view.yy_height / 2);
     [view addSubview:dot];
     
     return view;
@@ -154,8 +154,8 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
     CGPoint p = [gestureRecognizer locationInView:_label];
-    if (p.x < _label.width - 20) return NO;
-    if (p.y < _label.height - 20) return NO;
+    if (p.x < _label.yy_width - 20) return NO;
+    if (p.y < _label.yy_height - 20) return NO;
     return YES;
 }
 

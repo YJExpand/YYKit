@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _webView.frame = self.view.bounds;
-    if (kSystemVersion < 7) _webView.height -= 44;
+    if (kSystemVersion < 7) _webView.yy_height -= 44;
     [self.view addSubview:_webView];
     
     [_webView loadRequest:[NSURLRequest requestWithURL:_url]];

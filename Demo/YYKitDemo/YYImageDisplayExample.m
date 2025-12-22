@@ -25,13 +25,13 @@
     _scrollView = [UIScrollView new];
     _scrollView.frame = self.view.bounds;
     if (kSystemVersion < 7) {
-        _scrollView.height -= 44;
+        _scrollView.yy_height -= 44;
     }
     [self.view addSubview:_scrollView];
     
     UILabel *label = [UILabel new];
     label.backgroundColor = [UIColor clearColor];
-    label.size = CGSizeMake(self.view.width, 60);
+    label.size = CGSizeMake(self.view.yy_width, 60);
     label.top = 20;
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
@@ -100,7 +100,7 @@
     YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
     
     if (size.width > 0 && size.height > 0) imageView.size = size;
-    imageView.centerX = self.view.width / 2;
+    imageView.centerX = self.view.yy_width / 2;
     imageView.top = [(UIView *)[_scrollView.subviews lastObject] bottom] + 30;
     [_scrollView addSubview:imageView];
     [YYImageExampleHelper addTapControlToAnimatedImageView:imageView];
@@ -111,13 +111,13 @@
     
     UILabel *imageLabel = [UILabel new];
     imageLabel.backgroundColor = [UIColor clearColor];
-    imageLabel.frame = CGRectMake(0, 0, self.view.width, 20);
+    imageLabel.frame = CGRectMake(0, 0, self.view.yy_width, 20);
     imageLabel.top = imageView.bottom + 10;
     imageLabel.textAlignment = NSTextAlignmentCenter;
     imageLabel.text = text;
     [_scrollView addSubview:imageLabel];
     
-    _scrollView.contentSize = CGSizeMake(self.view.width, imageLabel.bottom + 20);
+    _scrollView.contentSize = CGSizeMake(self.view.yy_width, imageLabel.bottom + 20);
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{

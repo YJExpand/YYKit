@@ -28,8 +28,8 @@ static NSString *const kLabel = @"Example";
     UILabel *label = [UILabel new];
     label.text = @"see YYKeychainExample.m";
     [label sizeToFit];
-    label.centerX = self.view.width / 2;
-    label.centerY = self.view.height / 2;
+    label.centerX = self.view.yy_width / 2;
+    label.centerY = self.view.yy_height / 2;
     [self.view addSubview:label];
     [self test];
 }

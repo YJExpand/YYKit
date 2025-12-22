@@ -62,7 +62,7 @@
             NSNumber *num = [NSNumber numberWithString:_emoticon.code];
             NSString *str = [NSString stringWithUTF32Char:num.unsignedIntValue];
             if (str) {
-                UIImage *img = [UIImage imageWithEmoji:str size:_imageView.width];
+                UIImage *img = [UIImage imageWithEmoji:str size:_imageView.yy_width];
                 _imageView.image = img;
             }
         } else if (_emoticon.group.groupID && _emoticon.png){
@@ -80,7 +80,7 @@
 }
 
 - (void)updateLayout {
-    _imageView.center = CGPointMake(self.width / 2, self.height / 2);
+    _imageView.center = CGPointMake(self.yy_width / 2, self.yy_height / 2);
 }
 
 @end
@@ -121,7 +121,7 @@
     _magnifier = [[UIImageView alloc] initWithImage:[WBStatusHelper imageNamed:@"emoticon_keyboard_magnifier"]];
     _magnifierContent = [UIImageView new];
     _magnifierContent.size = CGSizeMake(40, 40);
-    _magnifierContent.centerX = _magnifier.width / 2;
+    _magnifierContent.centerX = _magnifier.yy_width / 2;
     [_magnifier addSubview:_magnifierContent];
     _magnifier.hidden = YES;
     [self addSubview:_magnifier];
@@ -316,8 +316,8 @@
 
 - (void)_initTopLine {
     UIView *line = [UIView new];
-    line.width = self.width;
-    line.height = CGFloatFromPixel(1);
+    line.yy_width = self.yy_width;
+    line.yy_height = CGFloatFromPixel(1);
     line.backgroundColor = UIColorHex(bfbfbf);
     line.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self addSubview:line];
@@ -379,7 +379,7 @@
         [btns addObject:btn];
     }
     
-    toolbar.bottom = self.height;
+    toolbar.bottom = self.yy_height;
     [self addSubview:toolbar];
     _toolbarButtons = btns;
 }
@@ -408,7 +408,7 @@
 - (void)_toolbarBtnDidTapped:(UIButton *)btn {
     NSInteger groupIndex = btn.tag;
     NSInteger page = ((NSNumber *)_emoticonGroupPageIndexs[groupIndex]).integerValue;
-    CGRect rect = CGRectMake(page * _collectionView.width, 0, _collectionView.width, _collectionView.height);
+    CGRect rect = CGRectMake(page * _collectionView.yy_width, 0, _collectionView.yy_width, _collectionView.yy_height);
     [_collectionView scrollRectToVisible:rect animated:NO];
     [self scrollViewDidScroll:_collectionView];
 }
@@ -469,7 +469,7 @@
 #pragma mark UICollectionViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    NSInteger page = round(scrollView.contentOffset.x / scrollView.width);
+    NSInteger page = round(scrollView.contentOffset.x / scrollView.yy_width);
     if (page < 0) page = 0;
     else if (page >= _emoticonGroupTotalPageCount) page = _emoticonGroupTotalPageCount - 1;
     if (page == _currentPageIndex) return;
@@ -496,8 +496,8 @@
         } else {
             layer.backgroundColor = UIColorHex(dedede).CGColor;
         }
-        layer.centerY = _pageControl.height / 2;
-        layer.left = (_pageControl.width - pageControlWidth) / 2 + i * (width + 2 * padding) + padding;
+        layer.centerY = _pageControl.yy_height / 2;
+        layer.left = (_pageControl.yy_width - pageControlWidth) / 2 + i * (width + 2 * padding) + padding;
         [_pageControl.layer addSublayer:layer];
     }
     [_toolbarButtons enumerateObjectsUsingBlock:^(UIButton *btn, NSUInteger idx, BOOL *stop) {

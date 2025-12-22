@@ -33,7 +33,7 @@
     [self.contentView addSubview:_webImageView];
     
     _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    _indicator.center = CGPointMake(self.width / 2, self.height / 2);
+    _indicator.center = CGPointMake(self.yy_width / 2, self.yy_height / 2);
     _indicator.hidden = YES;
     //[self.contentView addSubview:_indicator]; //use progress bar instead..
     
@@ -48,10 +48,10 @@
     
     CGFloat lineHeight = 4;
     _progressLayer = [CAShapeLayer layer];
-    _progressLayer.size = CGSizeMake(_webImageView.width, lineHeight);
+    _progressLayer.size = CGSizeMake(_webImageView.yy_width, lineHeight);
     UIBezierPath *path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(0, _progressLayer.height / 2)];
-    [path addLineToPoint:CGPointMake(_webImageView.width, _progressLayer.height / 2)];
+    [path addLineToPoint:CGPointMake(_webImageView.yy_width, _progressLayer.height / 2)];
     _progressLayer.lineWidth = lineHeight;
     _progressLayer.path = path.CGPath;
     _progressLayer.strokeColor = [UIColor colorWithRed:0.000 green:0.640 blue:1.000 alpha:0.720].CGColor;
@@ -214,7 +214,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat viewHeight = scrollView.height + scrollView.contentInset.top;
+    CGFloat viewHeight = scrollView.yy_height + scrollView.contentInset.top;
     for (YYWebImageExampleCell *cell in [self.tableView visibleCells]) {
         CGFloat y = cell.centerY - scrollView.contentOffset.y;
         CGFloat p = y - viewHeight / 2;

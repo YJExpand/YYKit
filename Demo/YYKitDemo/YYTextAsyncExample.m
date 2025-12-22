@@ -123,7 +123,7 @@
     
     
     YYFPSLabel *fps = [YYFPSLabel new];
-    fps.centerY = toolbar.height / 2;
+    fps.centerY = toolbar.yy_height / 2;
     fps.left = 5;
     [toolbar addSubview:fps];
     
@@ -132,13 +132,13 @@
     label.text = @"UILabel/YYLabel(Async): ";
     label.font = [UIFont systemFontOfSize:14];
     [label sizeToFit];
-    label.centerY = toolbar.height / 2;
+    label.centerY = toolbar.yy_height / 2;
     label.left = fps.right + 10;
     [toolbar addSubview:label];
     
     UISwitch *switcher = [UISwitch new];
     [switcher sizeToFit];
-    switcher.centerY = toolbar.height / 2;
+    switcher.centerY = toolbar.yy_height / 2;
     switcher.left = label.right + (kiOS7Later ? 10 : -10);
     switcher.layer.transformScale = 0.7;
     @weakify(self);

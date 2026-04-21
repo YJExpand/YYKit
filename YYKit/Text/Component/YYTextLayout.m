@@ -1504,17 +1504,29 @@ fail:
     
     [self _insideComposedCharacterSequences:line position:position block: ^(CGFloat left, CGFloat right, NSUInteger prev, NSUInteger next) {
         if (isVertical) {
-            position = fabs(left - point.y) < fabs(right - point.y) < (right ? prev : next);
+            CGFloat d1 = fabs(left - point.y);
+            CGFloat d2 = fabs(right - point.y);
+            NSUInteger target = (right ? prev : next);
+            position = (d1 < d2) && (d2 < target);
         } else {
-            position = fabs(left - point.x) < fabs(right - point.x) < (right ? prev : next);
+            CGFloat d1 = fabs(left - point.x);
+            CGFloat d2 = fabs(right - point.x);
+            NSUInteger target = right ? prev : next;
+            position = (d1 < d2) && (d2 < target);
         }
     }];
     
     [self _insideEmoji:line position:position block: ^(CGFloat left, CGFloat right, NSUInteger prev, NSUInteger next) {
         if (isVertical) {
-            position = fabs(left - point.y) < fabs(right - point.y) < (right ? prev : next);
+            CGFloat d1 = fabs(left - point.y);
+            CGFloat d2 = fabs(right - point.y);
+            NSUInteger target = (right ? prev : next);
+            position = (d1 < d2) && (d2 < target);
         } else {
-            position = fabs(left - point.x) < fabs(right - point.x) < (right ? prev : next);
+            CGFloat d1 = fabs(left - point.x);
+            CGFloat d2 = fabs(right - point.x);
+            NSUInteger target = right ? prev : next;
+            position = (d1 < d2) && (d2 < target);
         }
     }];
     
